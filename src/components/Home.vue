@@ -1,10 +1,31 @@
 <template>
+  <div>
   <h2 id="heading1">Welcome to Todo App</h2>
+    <div class="container form-group">
+    <ul>
+     <li v-for="item in items" :key="item.itemId" class="form-control">
+       {{item.itemName}}
+       <input type="checkbox" v-model=item.completed>
+       <button class="btn btn-warning btn-sm">Edit Item</button>
+       <button class="btn btn-danger btn-sm">Delete Item</button>
+     </li>
+    </ul>
+    </div>
+  </div>
 </template>
 <script>
-
 export default {
-  name: 'Home'
+  name: 'Home',
+  data () {
+    return {
+      items: []
+    }
+  },
+  mounted () {
+    this.items = this.$store.getters.items
+  },
+  methods: {
+  }
 }
 
 </script>
